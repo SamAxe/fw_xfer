@@ -1,0 +1,4 @@
+(executable
+ (public_name fw_xfer)
+ (name main)
+ (libraries fw_xfer))
