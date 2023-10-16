@@ -1,2 +1,8 @@
 (library
- (name fw_xfer))
+ (name fw_xfer)
+
+ (libraries ppx_yojson_conv base cohttp-lwt-unix str core core_unix)
+ (preprocess (pps ppx_deriving.show ppx_yojson_conv ))
+
+ )
+
