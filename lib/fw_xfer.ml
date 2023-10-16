@@ -1,8 +1,6 @@
 open Lwt
 open Cohttp
 open Cohttp_lwt_unix
-(* open Ppx_yojson_conv_lib.Yojson_conv.Primitives *)
-
 
 (* Returns body of a message *)
 let get_page (uri : Uri.t)  =

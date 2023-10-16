@@ -1,7 +1,18 @@
 
 # Summary
 
-This code base is to help move a fedwiki site from an `old_host` to `new_host`.
+This code base is to help transfer a fedwiki site from an `old_host` to `new_host`.
+It is very much a work in progress and uses an exploratory assets plugin that
+is not part of the standard wiki-server package.
+
+This version only downloads the slugs, assets, and sitemaps.  It does not currently 
+rewrite urls within slugs.
+
+# Usage
+
+dune exec bin/main.exe http://<wikihost>
+
+# General approach for moving files
 
 The general approach is:
 
