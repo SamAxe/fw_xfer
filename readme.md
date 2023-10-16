@@ -10,7 +10,7 @@ rewrite urls within slugs.
 
 # Usage
 
-dune exec bin/main.exe http://<wikihost>
+`dune exec bin/main.exe http://<wikihost>`
 
 # General approach for moving files
 
@@ -33,7 +33,7 @@ The general approach is:
 
 *Note*: This approach depends upon an updated assets plugin that supports
 the `index` request for an index of the assets.
-[[https://github.com/fedwiki/wiki-plugin-assets/compare/master...ward/index]]
+[https://github.com/fedwiki/wiki-plugin-assets/compare/master...ward/index]
 
 4. Download the `<old_host>/plugin/assets/index` asset index file.  This returns
    an array of `<filename>`, `<size>` pairs.
