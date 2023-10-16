@@ -23,12 +23,3 @@ let create_newdir path =
     Core_unix.mkdir_p path 
     end
 
-let escape_spaces ( str : string ) : string = 
-  str 
-  |> Str.global_replace (Str.regexp "%") "%25"   (* THis has to be first! *)
-  |> Str.global_replace (Str.regexp " ") "%20"
-  |> Str.global_replace (Str.regexp "&") "%26" 
-  |> Str.global_replace (Str.regexp "(") "%28" 
-  |> Str.global_replace (Str.regexp ")") "%29" 
-
-

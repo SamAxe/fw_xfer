@@ -7,7 +7,7 @@ let fetch_and_save_page
   ~( save_name : string ) 
   ~( page : string ) =
   Fw_xfer.create_newdir directory ;
-  let page_url = rel_url_prefix ^ (Fw_xfer.escape_spaces page ) in
+  let page_url = rel_url_prefix ^ page in
     print_endline @@ "getting '" ^ (Uri.to_string hosturi) ^ "'    " ^ page_url ;
     let host_uri = Uri.with_path hosturi page_url in
     let page_content = Lwt_main.run @@ Fw_xfer.get_page host_uri in
