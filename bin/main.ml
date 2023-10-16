@@ -1,3 +1,10 @@
+(*
+   This code sequentially downloads slugs, assets, and sitemaps from a fedwiki
+   site.  It could download most pages in parallel and may do that at some point,
+   but other than time, this doesn't impact a site too hard with by spreading the
+   requests out over time. 
+*)
+
 open Ppx_yojson_conv_lib.Yojson_conv.Primitives
 
 let fetch_and_save_page 
@@ -61,6 +68,14 @@ let () =
   ;
 
 (*
+3.  The contents of each `slug` have a `title`, `story`, and `journal` and need
+    to have any references to `old_host` replaced with `new_host`.  Since the files
+    are json and in text format, this can be done externally with 
+    `sed -i 's/<old_host>/<new_host>/g' <slugname>`.
+TODO Implement the equivalent of this step here.
+*)
+
+(*
 4. Download the `<old_host>/plugin/assets/index` asset index file.  This returns
    an array of `<filename>`, `<size>` pairs.
 *)
@@ -89,6 +104,14 @@ let () =
    to be downloaded and updated on the new server, but this is less obvious to me.
 *)
 
-  fetch_and_save_page ~hosturi:hosturi ~directory:"" ~rel_url_prefix:"" ~page:"sitemap.xml" ~save_name:"" ;
-  fetch_and_save_page ~hosturi:hosturi ~directory:"" ~rel_url_prefix:"system/" ~page:"sitemap.json" ~save_name:"" ;
+  fetch_and_save_page ~hosturi:hosturi ~directory:"" ~rel_url_prefix:""        ~page:"sitemap.xml"     ~save_name:"" ;
+  fetch_and_save_page ~hosturi:hosturi ~directory:"" ~rel_url_prefix:"system/" ~page:"sitemap.json"    ~save_name:"" ;
   fetch_and_save_page ~hosturi:hosturi ~directory:"" ~rel_url_prefix:"system/" ~page:"site-index.json" ~save_name:"" ;
+
+
+(*
+7. The updated slugs need to be moved to the `<new_host>`'s pages area and the
+   downloaded assets directory hierarchy need to go to the assets folder at the
+   same level as `pages`.
+*)
+
