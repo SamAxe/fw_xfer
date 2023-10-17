@@ -5,20 +5,19 @@
 (generate_opam_files true)
 
 (source
- (github username/reponame))
+ (github SamAxe/fw_xfer))
+(authors "Sam Axe")
 
-(authors "Author Name")
-
-(maintainers "Maintainer Name")
+(maintainers "Sam Axe")
 
 (license LICENSE)
 
-(documentation https://url/to/documentation)
+(documentation https://gitlab.com/SamAxe/fw_xfer/-/blob/main/readme.md)
 
 (package
  (name fw_xfer)
- (synopsis "A short synopsis")
- (description "A longer description")
+ (synopsis "Minimal tools for helping transfer a fedwiki site")
+ (description "Minimal tools for helping transfer a fedwiki site. This version currently downloads pages, assets, and sitemaps.  It doesn't fully rewrite urls, though that is planned as a future feature.")
  (depends ocaml dune)
  (tags
   (topics "to describe" your project)))
