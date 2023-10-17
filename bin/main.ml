@@ -7,6 +7,13 @@
 
 open Ppx_yojson_conv_lib.Yojson_conv.Primitives
 
+let escape_spaces ( str : string ) : string =
+  (* Replacing % has to be first, if there are a series
+     of subsititions.  Hopefully, Uri.with_page does the
+     appropriate encoding, but didn't appear to do `%`.
+  *)
+  str |> Str.global_replace (Str.regexp "%") "%25"
+
 let fetch_and_save_page 
   ~( hosturi : Uri.t ) 
   ~( directory : string ) 
@@ -14,7 +21,7 @@ let fetch_and_save_page
   ~( save_name : string ) 
   ~( page : string ) =
   Fw_xfer.create_newdir directory ;
-  let page_url = rel_url_prefix ^ page in
+  let page_url = rel_url_prefix ^ ( escape_spaces page ) in
     print_endline @@ "getting '" ^ (Uri.to_string hosturi) ^ "'    " ^ page_url ;
     let host_uri = Uri.with_path hosturi page_url in
     let page_content = Lwt_main.run @@ Fw_xfer.get_page host_uri in
